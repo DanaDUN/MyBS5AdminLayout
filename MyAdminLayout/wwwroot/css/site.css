@@ -1,0 +1,420 @@
+:root {
+    /* === 尺寸變數 (維持不變) === */
+    --sidebar-width-collapsed: 54px;
+    --sidebar-width-expanded: 250px;
+    /* === 配色變數 (專業藍綠色系 #0D98BA) === */
+    --sidebar-bg: #00A9A5;                   /* 主色：更專業沉穩的青綠色 (Teal) */
+    --sidebar-hover-bg: #4CCDCF;        /* 懸停 */
+    --sidebar-active-bg: #0a7795;         /* Active */
+
+    --brand-red: #D93025;                    /* 強調色 */
+    --body-bg: #f8f9fa;                         /* 輕微的米白背景 */
+
+    /* === NEW: 閱讀專用深色 === */
+    --corp-text-dark: #343a40;              /* 深灰文字 */
+    --corp-text-light: #6c757d;             /* 淺灰文字 */
+
+    /* === 擴充專業輔色 === */
+    --corp-secondary: #5A6D88; /* 輔助,次要顏色：偏沉穩的灰藍色，用於次要元素 */
+    --corp-info: #5ca7c1; /* 資訊藍 */
+
+    --sidebar-text: rgba(255, 255, 255, 0.9);
+    --sidebar-text-muted: rgba(255, 255, 255, 0.7);
+}
+
+/* --- 新增：專業數據表格樣式 --- */
+.table-corp thead th {
+    background-color: var(--corp-secondary); /* 背景維持藍灰 #A6ADB6 */
+    color: var(--corp-text-dark); /* 文字改為深灰 #333333 */
+    border-bottom: 2px solid var(--sidebar-bg);
+    font-weight: 600;
+}
+
+.table-corp {
+    border: 1px solid var(--corp-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    /* 確保表格邊框不會被 Bootstrap 內建樣式蓋掉 */
+}
+
+    .table-corp tbody tr:nth-child(odd) {
+        background-color: #f8f9fa; /* 淺色斑馬紋 */
+    }
+    /* 表格 Hover 效果 */
+    .table-corp tbody tr:hover {
+        background-color: #e9ecef;
+        cursor: pointer;
+    }
+
+body {
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* === 側邊欄 === */
+.sidebar {
+    width: var(--sidebar-width-collapsed);
+    height: 100vh; /* 改用 height: 100vh 確保高度固定在視窗範圍內 */
+    min-height: auto; /* 確保 height 屬性被優先使用 */
+    background-color: var(--sidebar-bg);
+    background-image: linear-gradient(180deg, var(--sidebar-bg) 0%, #0a7795 100%);
+    transition: width 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 10px rgba(13, 152, 186, 0.15); /* 使用 Base Color 的 RGB */
+}
+
+    .sidebar:hover {
+        width: var(--sidebar-width-expanded);
+        box-shadow: 4px 0 20px rgba(30, 42, 65, 0.3);
+    }
+
+/* Logo Header */
+.sidebar-heading {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0;
+    border-bottom: 1px solid rgba(255,255,255, 0.1);
+}
+
+.brand-icon-box {
+    background-color: white;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* === 選單連結 === */
+.nav-link {
+    color: var(--sidebar-text);
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+}
+
+    .nav-link:hover {
+        color: #fff;
+        background-color: var(--sidebar-hover-bg);
+        border-left: 4px solid var(--brand-red);
+    }
+
+    /* Active 樣式 (V7) */
+    .nav-link.active {
+        /*color: #fff;
+        background-color: var(--sidebar-active-bg);
+        border-left: 4px solid var(--brand-red);*/
+        /* 修正 1: 強制將背景色改為極淺灰，覆蓋所有深色背景 */
+        background-color: #f8f9fa !important;
+        /* 修正 2: 強制將文字色改為閱讀專用深色，保證高對比 */
+        color: var(--corp-text-dark) !important;
+        /* 邊條保持品牌紅，強調 Active 狀態 */
+        border-left: 6px solid var(--brand-red);
+    }
+
+        /* 確保 Active 狀態的 Hover 效果 */
+        .nav-link.active:hover {
+            background-color: #e9ecef !important;
+            color: var(--corp-text-dark) !important;
+        }
+
+        .nav-link:hover .icon-main,
+        .nav-link.active .icon-main {
+            margin-left: -4px;
+        }
+
+    .nav-link:focus {
+        /* 強制文字顏色使用高對比深灰 */
+        color: var(--corp-text-dark) !important;
+        /* 確保 Focus 時背景色不會跳回深色，這裡使用 Hover 或 Active 的顏色 */
+        background-color: var(--sidebar-hover-bg);
+        /* 移除原生或 Bootstrap 的 Focus 輪廓 */
+        outline: 0;
+        box-shadow: none;
+    }
+
+    /* 修正 Active 狀態的連結，確保 Focus 時的樣式和 Active/Hover 一致 */
+    .nav-link.active:focus {
+        outline: 0;
+        box-shadow: none;
+        /* 保持淺灰背景，深色文字 */
+        background-color: #e9ecef !important;
+        color: var(--corp-text-dark) !important;
+    }
+
+    /* 針對非 active 的 nav-link，確保點擊後的狀態也使用深色文字 */
+    .nav-link:not(.active):focus {
+        /* 移除原生/Bootstrap 輪廓 */
+        outline: 0;
+        box-shadow: none;
+        /* 確保 Focus 狀態的背景與 Hover 狀態一致 (深色背景，白色文字) */
+        background-color: var(--sidebar-hover-bg); /* 背景色使用 Hover 色 */
+        color: var(--sidebar-text) !important; /* 未選中時，文字應保持白色 */
+    }
+
+/* Icon 統一設定 */
+.icon-main {
+    min-width: var(--sidebar-width-collapsed);
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* 文字區域 */
+.link-text {
+    opacity: 0;
+    margin-left: 10px;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.sidebar:hover .link-text,
+.sidebar:hover .dropdown-arrow {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* 下拉箭頭 */
+.dropdown-arrow {
+    opacity: 0;
+    margin-left: auto;
+    margin-right: 15px;
+    font-size: 0.8rem;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-link[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* 子選單樣式 */
+.submenu-list {
+    background-color: rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.submenu-link {
+    color: var(--sidebar-text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-left: calc(var(--sidebar-width-collapsed) + 10px);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+    .submenu-link:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding-left: calc(var(--sidebar-width-collapsed) + 15px);
+    }
+
+/* 右側內容區塊 */
+.content-card {
+    background: white;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+
+    .content-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+/* --- 客製化專業按鈕樣式 --- */
+
+.btn-corp {
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: 6px; /* 微圓角 */
+    padding: 8px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 微妙的抬升陰影 */
+    cursor: pointer;
+}
+
+/* 1. Primary Button (海軍藍) */
+.btn-corp-primary {
+    background-color: var(--sidebar-bg); /* #1E2A41 */
+    color: #fff;
+}
+
+    .btn-corp-primary:hover {
+        background-color: var(--sidebar-hover-bg); /* #2C3E50 (V7 Hover 色) */
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Hover 時陰影更明顯 */
+        transform: translateY(-1px); /* 略微上浮 */
+    }
+
+    .btn-corp-primary:active {
+        background-color: var(--sidebar-active-bg); /* #172338 (V7 Active 色) */
+        box-shadow: none; /* 移除陰影，模擬按壓效果 */
+        transform: translateY(0);
+    }
+
+/* 2. Accent Button (品牌紅) */
+.btn-corp-accent {
+    background-color: var(--brand-red); /* #D93025 */
+    color: #fff;
+}
+
+    .btn-corp-accent:hover {
+        background-color: #e35a64; /* 略淺的紅 */
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+    }
+
+    .btn-corp-accent:active {
+        background-color: #c71e29; /* 略深的紅 */
+        box-shadow: none;
+        transform: translateY(0);
+    }
+
+/* 3. Outline/Ghost Button */
+.btn-corp-outline {
+    background-color: transparent;
+    color: var(--sidebar-bg);
+    border: 1px solid var(--sidebar-bg);
+    box-shadow: none;
+    transition: all 0.2s ease;
+}
+
+    .btn-corp-outline:hover {
+        background-color: var(--sidebar-bg);
+        color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+/* site.css: 新增客製化分頁樣式 */
+
+.pagination-corp .page-link {
+    color: var(--sidebar-bg); /* 海軍藍文字 */
+    border-color: var(--corp-secondary); /* 藍灰邊框 */
+    transition: all 0.2s;
+}
+
+    /* 確保非 Active 狀態下的 Hover 效果 */
+    .pagination-corp .page-link:hover {
+        color: var(--sidebar-bg);
+        background-color: #e9ecef;
+        border-color: var(--corp-secondary);
+    }
+
+/* Active 狀態: 使用企業主色填充 */
+.pagination-corp .page-item.active .page-link {
+    background-color: var(--sidebar-bg);
+    border-color: var(--sidebar-bg);
+    color: white;
+}
+
+    /* Active 狀態 Hover: 使用 V7 Hover 色 */
+    .pagination-corp .page-item.active .page-link:hover {
+        background-color: var(--sidebar-hover-bg);
+        border-color: var(--sidebar-hover-bg);
+    }
+
+/* 新增底部固定操作欄樣式 */
+.fixed-action-footer {
+    position: fixed;
+    /* 預設狀態 (側邊欄關閉)：左邊距為 70px */
+    left: var(--sidebar-collapsed-width); /* 70px */
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff; /* 白色背景 */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px 30px;
+    z-index: 1000; /* 確保它在最上層 */
+    /* NEW: 加上過渡，使其與側邊欄開合同步平滑移動 */
+    transition: left 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+/* 側邊欄打開時的樣式調整 */
+body.sidebar-expanded .fixed-action-footer {
+    /* 側邊欄展開時：左邊距切換到 260px */
+    left: var(--sidebar-width); /* 260px */
+}
+
+/* 新增客製化 Tabs 和 Pills 樣式 */
+
+/* --- Tabs Styling --- */
+/* 預設狀態: 確保文字使用深色，易於閱讀 */
+.nav-tabs .nav-link {
+    color: var(--corp-text-dark);
+    border: 1px solid var(--corp-secondary); /* 邊框改為次要藍灰色 */
+    border-bottom: 0;
+    transition: all 0.2s;
+    padding: 0.6rem 1.25rem; /* 增加內距，特別是左右 (0.6rem 上下, 1.25rem 左右) */
+}
+
+    .nav-tabs .nav-link:hover {
+        border-color: var(--corp-secondary); /* 懸停時使用藍灰邊框 */
+        background-color: #f8f9fa;
+    }
+
+    /* Active 狀態: 使用主色線條強調，次要色邊框, 並使用主色文字 */
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: var(--sidebar-bg); /* 藍綠色文字 */
+        background-color: #fff;
+        border-color: var(--corp-secondary) var(--corp-secondary) #fff; /* 修正 2: Active 狀態的左右邊框也使用次要藍灰色 */
+        border-bottom: 3px solid var(--sidebar-bg); /* 主色底部線條 */
+        font-weight: 600;
+    }
+
+/* --- Pills Styling (類似按鈕的切換) --- */
+.nav-pills-corp .nav-link {
+    color: var(--corp-text-dark);
+    background-color: #d2d4d7; /* 淺灰色底 (未選擇狀態) */
+    margin-right: 10px;
+    padding: 8px 15px;
+    transition: all 0.2s;
+    /* 修正 1: 增加圓角，確保 Pill 形狀 */
+    border-radius: 0.35rem;
+    /* 修正 2: 明確移除所有邊框，消除黑框線問題 */
+    border: none !important;
+}
+
+    .nav-pills-corp .nav-link:hover {
+        color: var(--sidebar-bg); /* 懸停時使用品牌色文字 */
+    }
+
+    /* Pills Active 狀態: 主色填充，白色文字 */
+    .nav-pills-corp .nav-link.active {
+        color: white;
+        background-color: var(--sidebar-bg) !important; /* 主色填充 (已選擇狀態) */
+        /* 確保 active 狀態也沒有邊框 */
+        border: none !important;
+    }
+
+/* 針對垂直導航 (flex-column) 的微調，確保 margin-right 不影響佈局 */
+.nav.flex-column.nav-pills-corp .nav-link {
+    margin-right: 0; /* 垂直排列時，不需要右邊距 */
+    margin-bottom: 5px; /* 改為底部邊距 */
+}
