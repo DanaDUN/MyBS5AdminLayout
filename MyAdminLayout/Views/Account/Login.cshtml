@@ -1,0 +1,145 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    // 設置為空，表示不使用主 _Layout.cshtml
+    Layout = null;
+
+    // 獲取 CSS 變數供行內樣式使用
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+}
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登入系統 - Corporate Pro</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        /* 這裡定義背景樣式 */
+        body {
+            /* 使用雙層次柔和漸層，讓卡片成為主角 */
+            background-image:
+            /* 頂層：擴大的中央聚光燈 (保持不變) */
+            radial-gradient( circle at 50% 50%, rgba(255, 255, 255, 0.15), transparent 70% ),
+            /* 底層：加入極淡的對比色（使用粉橘色 FF9999），增加質感 */
+            linear-gradient( 135deg,
+            /* 1. 深藍綠色 (30% Opacity) */
+            rgba(0, 169, 165, 0.3) 0%,
+            /* 2. 中間色：較淡的藍綠色 */
+            rgba(76, 205, 207, 0.3) 50%,
+            /* 3. 對比色點綴：極淺粉橘色 (10% Opacity) */
+            rgba(230, 133, 169, 0.20) 60%,
+            /* 4. 最淺的藍色 (30% Opacity) */
+            rgba(176, 230, 240, 0.3) 100% );
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+            /* 確保卡片居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-card {
+            max-width: 420px;
+            width: 100%;
+            padding: 30px;
+            background-color: white; /* 純白色卡片突出 */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* 加強陰影，強調立體感 */
+            border-radius: 8px;
+        }
+
+        .login-header {
+            background-color: @primaryColor;
+            color: white;
+            padding: 20px 30px;
+            margin: -30px -30px 30px -30px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-logo-box {
+            background-color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card login-card">
+
+        @* <div class="login-header">
+            <h2 class="fw-bold mb-0">Corporate Pro</h2>
+            <p class="small opacity-75 mb-0">企業管理系統</p>
+        </div> *@
+
+        <div class="login-header">
+            <div class="login-logo-box">
+                <i class="bi bi-fire" style="color: @accentColor; font-size: 2.2rem;"></i>
+            </div>
+            <h3 class="fw-bold mb-0">Corporate Pro</h3>
+            <p class="small opacity-75 mb-0">企業管理系統</p>
+        </div>
+
+
+        <form method="post">
+            <div class="text-center mb-4">
+                <h5 class="fw-bold" style="color: @corpTextDark;">使用者登入</h5>
+            </div>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">帳號/信箱</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input type="text" class="form-control" id="username" placeholder="請輸入您的帳號或電子郵件">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label">密碼</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" class="form-control" id="password" placeholder="請輸入密碼">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">記住我</label>
+                </div>
+                <a href="#" class="small text-muted" style="text-decoration: none;">忘記密碼？</a>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn-corp btn-corp-primary fw-bold p-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> 立即登入
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
