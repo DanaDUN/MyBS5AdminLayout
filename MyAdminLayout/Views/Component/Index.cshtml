@@ -1,0 +1,312 @@
+@{
+    // 從 Layout 繼承顏色變數，方便在 View 中使用
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)"; // <-- 新增的文字顏色變數
+
+    ViewData["Title"] = "UI 元件演示頁面";
+}
+
+<div class="p-4">
+
+    <header class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom border-2">
+        <div>
+            <h3 class="fw-bold" style="color: @corpTextDark;">⚙️ 綜合元件庫</h3>
+            <p class="text-muted mb-0">所有客製化與標準 UI 元素的視覺參考和複製區</p>
+        </div>
+        <button class="btn-corp btn-corp-primary">
+            <i class="bi bi-file-earmark-code me-1"></i> 獲取原始碼
+        </button>
+    </header>
+
+    <div class="card p-4 content-card mb-5">
+        <h4 class="fw-bold mb-4" style="color: @corpTextDark;">1. 按鈕 (Buttons)</h4>
+        <p class="text-muted">使用客製化 <code>.btn-corp-*</code> 類別，具備陰影和動畫效果。</p>
+
+        <div class="d-flex flex-wrap gap-3">
+            <button class="btn-corp btn-corp-primary">
+                <i class="bi bi-save me-1"></i> 儲存主要資料
+            </button>
+
+            <button class="btn-corp btn-corp-accent">
+                <i class="bi bi-x-octagon me-1"></i> 刪除/取消
+            </button>
+
+            <button class="btn-corp btn-corp-outline">
+                <i class="bi bi-arrow-clockwise me-1"></i> 重新整理
+            </button>
+
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-warning">Warning</button>
+        </div>
+    </div>
+
+    <div class="card p-4 content-card mb-5">
+        <h4 class="fw-bold mb-4" style="color: @corpTextDark;">2. 標籤與徽章 (Badges)</h4>
+
+        <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
+            <span class="badge rounded-pill text-white" style="background-color: @primaryColor;">企業色</span>
+            <span class="badge rounded-pill text-white" style="background-color: @accentColor;">品牌紅</span>
+            <span class="badge rounded-pill bg-success">已啟用</span>
+            <span class="badge rounded-pill bg-danger">已禁用</span>
+            <span class="badge rounded-pill bg-secondary">草稿</span>
+        </div>
+
+        <h5>
+            頁面標題範例 <span class="badge rounded-pill text-white" style="background-color: @accentColor;">New</span>
+        </h5>
+    </div>
+
+    <div class="card p-4 content-card mb-5">
+        <h4 class="fw-bold mb-4" style="color: @corpTextDark;">3. 提示框與通知 (Alerts)</h4>
+
+        <div class="alert text-white d-flex align-items-center mb-3" role="alert" style="background-color: @primaryColor;">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <div>
+                <strong>主要通知：</strong> 您的帳戶資訊已更新。
+            </div>
+        </div>
+
+        <div class="alert alert-success d-flex align-items-center mb-3" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <div>
+                操作成功！數據已完成更新。
+            </div>
+        </div>
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            請確認所有的必填欄位。
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div class="card p-4 content-card mb-5">
+        <h4 class="fw-bold mb-4" style="color: @corpTextDark;">4. 表單與輸入 (Forms)</h4>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="inputDefault" class="form-label">標準輸入框</label>
+                <input type="text" class="form-control" id="inputDefault" placeholder="輸入文字...">
+            </div>
+            <div class="col-md-6">
+                <label for="inputGroup" class="form-label">帶 Icon 輸入群組</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search...">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="inputInvalid" class="form-label text-danger">錯誤狀態 (Invalid)</label>
+                <input type="text" class="form-control is-invalid" id="inputInvalid" value="錯誤內容" required>
+                <div class="invalid-feedback">
+                    此欄位有誤，請修正。
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="selectDefault" class="form-label">下拉選單</label>
+                <select class="form-select" id="selectDefault">
+                    <option selected>Open this select menu</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">啟用狀態 (Switch)</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-4 content-card mb-5">
+        <h4 class="fw-bold mb-4" style="color: @corpTextDark;">5. 進度條與標題 (Progress & Typography)</h4>
+
+        <h5 class="mb-3">進度條</h5>
+        <div class="progress mb-3" role="progressbar" aria-label="Primary progress" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="height: 15px;">
+            <div class="progress-bar" style="width: 75%; background-color: @corpTextDark;">75%</div>
+        </div>
+        <div class="progress mb-4" role="progressbar" aria-label="Accent progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bg-danger" style="width: 50%;"></div>
+        </div>
+
+        <h5 class="mb-3">排版範例</h5>
+        <h1>H1 標題</h1>
+        <p class="lead">這是一個引人注目的導言段落 (Lead Paragraph)。</p>
+        <blockquote class="blockquote border-start ps-3 border-5" style="border-color: @corpTextDark !important;">
+            <p>專業的設計始於一致性。</p>
+            <footer class="blockquote-footer">設計原則</footer>
+        </blockquote>
+    </div>
+</div>
+
+<div class="card p-4 content-card mb-5">
+    <h4 class="fw-bold mb-4" style="color: @corpTextDark;">6. 響應式數據表格 (Data Tables)</h4>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="input-group input-group-sm" style="width: 200px;">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control" placeholder="搜尋項目名稱...">
+            </div>
+            <select class="form-select form-select-sm" style="width: 120px; border-color: var(--corp-secondary);">
+                <option selected>所有狀態</option>
+                <option>待審核</option>
+                <option>已通過</option>
+            </select>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <small class="text-muted">總計 42 筆項目</small>
+            <button class="btn-corp btn-corp-primary btn-sm">
+                <i class="bi bi-plus-lg me-1"></i> 新增項目
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-corp table-hover mb-0">
+            <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>
+                        項目名稱
+                        <i class="bi bi-sort-alpha-down-alt ms-1" style="color: @corpTextDark;"></i>
+                    </th>
+                    <th>狀態</th>
+                    <th>負責人</th>
+                    <th>
+                        創建日期
+                        <i class="bi bi-filter-right ms-1 text-muted"></i>
+                    </th>
+                    <th style="width: 120px;">動作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#" style="color: @corpTextDark; text-decoration: none;">年度預算報告 V1.0</a></td>
+                    <td><span class="badge rounded-pill text-white" style="background-color: @accentColor;">待審核</span></td>
+                    <td>王小明</td>
+                    <td>2025/11/15</td>
+                    <td>
+                        <button class="btn btn-sm text-white me-1" style="background-color: @corpTextDark;">檢視</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><a href="#" style="color: @corpTextDark; text-decoration: none;">新產品開發計畫</a></td>
+                    <td><span class="badge rounded-pill bg-success">已通過</span></td>
+                    <td>李大華</td>
+                    <td>2025/11/01</td>
+                    <td>
+                        <button class="btn btn-sm text-white me-1" style="background-color: @corpTextDark;">檢視</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td><a href="#" style="color: @corpTextDark; text-decoration: none;">IT 系統升級排程</a></td>
+                    <td><span class="badge rounded-pill" style="background-color: var(--corp-secondary); color: @corpTextDark;">處理中</span></td>
+                    <td>林美玲</td>
+                    <td>2025/10/20</td>
+                    <td>
+                        <button class="btn btn-sm text-white me-1" style="background-color: @corpTextDark;">檢視</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td><a href="#" style="color: @corpTextDark; text-decoration: none;">供應商合約審查</a></td>
+                    <td><span class="badge rounded-pill text-white" style="background-color: var(--corp-info);">資訊收集</span></td>
+                    <td>陳經理</td>
+                    <td>2025/10/10</td>
+                    <td>
+                        <button class="btn btn-sm text-white me-1" style="background-color: @corpTextDark;">檢視</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav class="mt-4" aria-label="Page navigation example">
+        <ul class="pagination pagination-sm justify-content-end pagination-corp">
+            <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="card p-4 content-card mb-5">
+    <h4 class="fw-bold mb-4" style="color: @corpTextDark;">7. 結構導航元件 (Tabs & Pills)</h4>
+
+    <h5 class="fw-bold mb-3" style="color: @corpTextDark;">標準 Tabs</h5>
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-basic-info" data-bs-toggle="tab" data-bs-target="#content-basic-info" type="button" role="tab" aria-controls="content-basic-info" aria-selected="true">
+                <i class="bi bi-gear-fill me-1"></i> 基本設置
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-security" data-bs-toggle="tab" data-bs-target="#content-security" type="button" role="tab" aria-controls="content-security" aria-selected="false">
+                <i class="bi bi-lock-fill me-1"></i> 安全與權限
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-log" data-bs-toggle="tab" data-bs-target="#content-log" type="button" role="tab" aria-controls="content-log" aria-selected="false">
+                <i class="bi bi-clock-history me-1"></i> 操作日誌
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content border p-3 bg-light rounded">
+        <div class="tab-pane fade show active" id="content-basic-info" role="tabpanel" aria-labelledby="tab-basic-info">
+            <p>這是基本設置的內容區塊。使用 Tabs 可以在有限空間內呈現大量資訊。</p>
+            <p class="small text-muted mb-0">當前 Active 狀態的下邊框是您的藍綠色品牌色。</p>
+        </div>
+        <div class="tab-pane fade" id="content-security" role="tabpanel" aria-labelledby="tab-security">
+            <p>安全設定區域：通常包含密碼變更或權限管理等敏感表單。</p>
+        </div>
+        <div class="tab-pane fade" id="content-log" role="tabpanel" aria-labelledby="tab-log">
+            <p>日誌數據：適合放置一個簡單的表格或列表。</p>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <h5 class="fw-bold mb-3" style="color: @corpTextDark;">專業 Pills (圓角按鈕導航)</h5>
+    <ul class="nav nav-pills nav-pills-corp mb-3" id="myPills" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pill-today" data-bs-toggle="pill" data-bs-target="#content-today" type="button" role="tab" aria-controls="content-today" aria-selected="true">
+                今日數據
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pill-week" data-bs-toggle="pill" data-bs-target="#content-week" type="button" role="tab" aria-controls="content-week" aria-selected="false">
+                本週報表
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pill-month" data-bs-toggle="pill" data-bs-target="#content-month" type="button" role="tab" aria-controls="content-month" aria-selected="false">
+                本月統計
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content border p-3 bg-light rounded">
+        <div class="tab-pane fade show active" id="content-today" role="tabpanel" aria-labelledby="pill-today">
+            <p>Pills 元件 Active 時使用主色藍綠色填充，非常適合做為數據儀表板的快速時間篩選按鈕。</p>
+        </div>
+        <div class="tab-pane fade" id="content-week" role="tabpanel" aria-labelledby="pill-week">
+            <p>本週數據載入中...</p>
+        </div>
+        <div class="tab-pane fade" id="content-month" role="tabpanel" aria-labelledby="pill-month">
+            <p>本月數據載入中...</p>
+        </div>
+    </div>
+</div>
