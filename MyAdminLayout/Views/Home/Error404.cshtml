@@ -1,0 +1,84 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - 找不到頁面</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        body {
+            /* 柔和漸層背景 (簡化版) */
+            background-image:
+            /* 頂層：擴大的中央聚光燈 (保持不變) */
+            radial-gradient( circle at 50% 50%, rgba(255, 255, 255, 0.15), transparent 70% ),
+            /* 底層：加入極淡的對比色（使用粉橘色 FF9999），增加質感 */
+            linear-gradient( 135deg,
+            /* 1. 深藍綠色 (30% Opacity) */
+            rgba(0, 169, 165, 0.3) 0%,
+            /* 2. 中間色：較淡的藍綠色 */
+            rgba(76, 205, 207, 0.3) 50%,
+            /* 3. 對比色點綴：極淺粉橘色 (10% Opacity) */
+            rgba(230, 133, 169, 0.20) 60%,
+            /* 4. 最淺的藍色 (30% Opacity) */
+            rgba(176, 230, 240, 0.3) 100% );
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: @primaryColor; /* 使用品牌色 */
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            color: @corpTextDark;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h3 class="fw-bold error-message">哎呀！您要找的頁面走丟了。</h3>
+        <p class="text-muted mb-4">我們找不到您請求的資源。請檢查網址是否有誤，或返回首頁。</p>
+
+        <a asp-controller="Home" asp-action="Index" class="btn-corp btn-corp-primary me-2">
+            <i class="bi bi-house-door-fill me-1"></i> 返回儀表板
+        </a>
+        <a href="javascript:history.back()" class="btn-corp btn-corp-outline">
+            <i class="bi bi-arrow-left me-1"></i> 返回上一頁
+        </a>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
