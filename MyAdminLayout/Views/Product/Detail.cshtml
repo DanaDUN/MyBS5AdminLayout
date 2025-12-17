@@ -1,0 +1,102 @@
+@{
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+
+    ViewData["Title"] = "產品詳情編輯";
+}
+
+<div class="p-4">
+
+    <header class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom border-2">
+        <div>
+            <h3 class="fw-bold" style="color: @corpTextDark;">📦 編輯產品：企業級筆記本電腦 Pro</h3>
+            <p class="text-muted mb-0">管理產品的基礎資訊、定價和媒體內容。</p>
+        </div>
+        <button class="btn-corp btn-corp-accent btn-sm">
+            <i class="bi bi-trash me-1"></i> 刪除此產品
+        </button>
+    </header>
+
+    <form>
+        <div class="card p-4 content-card mb-4">
+            <h5 class="fw-bold mb-4" style="color: @corpTextDark;"><i class="bi bi-info-circle me-2"></i> 基本資訊</h5>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="productName" class="form-label">產品名稱</label>
+                    <input type="text" class="form-control" id="productName" value="企業級筆記本電腦 Pro" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="productCode" class="form-label">產品編號</label>
+                    <input type="text" class="form-control" id="productCode" value="CORP-NB-PR-2025" disabled>
+                </div>
+
+                <div class="col-12">
+                    <label for="productDesc" class="form-label">產品描述</label>
+                    <textarea class="form-control" id="productDesc" rows="3">這是一款專為企業用戶設計的高效能筆記本電腦，具備強化資安功能。</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-4 content-card mb-4">
+            <h5 class="fw-bold mb-4" style="color: @corpTextDark;"><i class="bi bi-cash me-2"></i> 定價與庫存</h5>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="price" class="form-label">建議售價 (TWD)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="price" value="45000">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="stock" class="form-label">目前庫存</label>
+                    <input type="number" class="form-control" id="stock" value="150" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="supplier" class="form-label">供應商</label>
+                    <select class="form-select" id="supplier">
+                        <option selected>宏遠科技</option>
+                        <option>立達供應鏈</option>
+                    </select>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="isOnSale" checked>
+                        <label class="form-check-label" for="isOnSale">啟用產品上架狀態</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-4 content-card mb-4">
+            <h5 class="fw-bold mb-4" style="color: @corpTextDark;"><i class="bi bi-images me-2"></i> 媒體與附件</h5>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="formFile" class="form-label">產品主圖</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <div class="col-md-6">
+                    <label for="datePicker" class="form-label">上次更新日期</label>
+                    <input class="form-control" type="date" id="datePicker" value="2025-11-25">
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div style="height: 100px;"></div>
+
+</div>
+
+<div class="fixed-action-footer">
+    <button class="btn-corp btn-corp-primary me-3">
+        <i class="bi bi-check-circle me-1"></i> 確認儲存變更
+    </button>
+    <button class="btn-corp btn-corp-outline">
+        <i class="bi bi-x-lg me-1"></i> 取消並返回
+    </button>
+</div>
