@@ -1,0 +1,60 @@
+@{
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+
+    ViewData["Title"] = "數據分析與圖表";
+}
+
+<div class="p-4">
+
+    <header class="mb-5 pb-3 border-bottom border-2">
+        <h3 class="fw-bold" style="color: @corpTextDark;"><i class="bi bi-bar-chart-line me-2"></i> 數據分析與視覺化</h3>
+        <p class="text-muted mb-0">利用圖表和日曆，高效地追蹤和管理關鍵指標。</p>
+    </header>
+
+    <div class="row g-4">
+
+        <div class="col-lg-7">
+            <div class="card p-4 content-card h-100">
+                <h5 class="fw-bold mb-3" style="color: @corpTextDark;">年度銷售趨勢 (折線圖)</h5>
+                <p class="small text-muted mb-4">追蹤過去 12 個月的銷售表現和預測值。</p>
+
+                <div style="height: 350px; background-color: #f7f7f7; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+                    <p class="text-muted small mb-0">
+                        [Chart.js / ECharts 折線圖將會在此呈現，主要使用 <span style="color: @primaryColor;">主色調</span>]
+                    </p>
+                </div>
+
+                <p class="mt-3 small text-end text-muted mb-0">數據來源：2024年內部銷售報告</p>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card p-4 content-card h-100">
+                <h5 class="fw-bold mb-3" style="color: @corpTextDark;">產品利潤佔比 (長條圖)</h5>
+                <p class="small text-muted mb-4">展示各產品類別對總利潤的貢獻度。</p>
+
+                <div style="height: 350px; background-color: #f7f7f7; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+                    <p class="text-muted small mb-0">
+                        [Chart.js / ECharts 長條圖將會在此呈現，搭配 <span style="color: @primaryColor;">主色</span> 和 <span style="color: @accentColor;">輔助色</span>]
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card p-4 content-card">
+                <h5 class="fw-bold mb-3" style="color: @corpTextDark;"><i class="bi bi-calendar-event me-2"></i> 任務排程日曆</h5>
+                <p class="small text-muted mb-4">整合 FullCalendar 或類似元件，管理排程和資源分配。</p>
+
+                <div style="min-height: 700px; background-color: #fff; border: 1px solid #eee; padding: 20px; border-radius: 6px;">
+                    <p class="text-muted mb-0">
+                        [FullCalendar 或類似日曆元件將會在此呈現]
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
