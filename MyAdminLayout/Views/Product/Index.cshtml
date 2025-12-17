@@ -1,0 +1,138 @@
+@{
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+
+    ViewData["Title"] = "產品庫存清單";
+}
+
+<div class="p-4">
+
+    <header class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom border-2">
+        <div>
+            <h3 class="fw-bold" style="color: @corpTextDark;"><i class="bi bi-list-check me-2"></i> 產品庫存清單</h3>
+            <p class="text-muted mb-0">產品總覽、篩選與快速操作。</p>
+        </div>
+        <a asp-controller="Product" asp-action="Detail" class="btn-corp btn-corp-primary">
+            <i class="bi bi-plus-lg me-1"></i> 新增產品
+        </a>
+    </header>
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <div class="card p-3 content-card mb-4 sticky-top" style="top: 20px;">
+                <h6 class="fw-bold mb-3" style="color: @corpTextDark;"><i class="bi bi-filter me-1"></i> 進階篩選</h6>
+
+                <form>
+                    <div class="mb-3">
+                        <label for="filterStatus" class="form-label small text-muted mb-1">上架狀態</label>
+                        <select class="form-select form-select-sm" id="filterStatus">
+                            <option selected>所有狀態</option>
+                            <option>已上架</option>
+                            <option>已下架</option>
+                            <option>草稿</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="filterCategory" class="form-label small text-muted mb-1">產品類別</label>
+                        <select class="form-select form-select-sm" id="filterCategory">
+                            <option selected>所有類別</option>
+                            <option>電腦周邊</option>
+                            <option>辦公用品</option>
+                            <option>軟體授權</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="filterDateStart" class="form-label small text-muted mb-1">創建日期範圍</label>
+                        <input type="date" class="form-control form-control-sm mb-2" id="filterDateStart">
+                        <input type="date" class="form-control form-control-sm" id="filterDateEnd">
+                    </div>
+
+                    <hr>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn-corp btn-corp-primary btn-sm" type="submit">套用篩選</button>
+                        <button class="btn btn-outline-secondary btn-sm" type="reset">清除</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="card p-4 content-card mb-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="input-group input-group-sm" style="width: 250px;">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="快速搜尋...">
+                    </div>
+                    <small class="text-muted">總計 85 筆產品</small>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-corp table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th>產品名稱 <i class="bi bi-sort-alpha-down-alt ms-1" style="color: @primaryColor;"></i></th>
+                                <th>類別</th>
+                                <th>售價</th>
+                                <th>庫存</th>
+                                <th>上架狀態</th>
+                                <th style="width: 120px;">動作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><a asp-controller="Product" asp-action="Detail" style="color: @corpTextDark; text-decoration: none;">企業級筆記本電腦 Pro</a></td>
+                                <td>電腦周邊</td>
+                                <td>$45,000</td>
+                                <td>150</td>
+                                <td><span class="badge rounded-pill bg-success">已上架</span></td>
+                                <td>
+                                    <a asp-controller="Product" asp-action="Detail" class="btn btn-sm btn-outline-secondary">編輯</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><a asp-controller="Product" asp-action="Detail" style="color: @corpTextDark; text-decoration: none;">雲端儲存服務 (年約)</a></td>
+                                <td>軟體授權</td>
+                                <td>$3,600</td>
+                                <td>N/A</td>
+                                <td><span class="badge rounded-pill text-white" style="background-color: var(--corp-info);">草稿</span></td>
+                                <td>
+                                    <a asp-controller="Product" asp-action="Detail" class="btn btn-sm btn-outline-secondary">編輯</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><a asp-controller="Product" asp-action="Detail" style="color: @corpTextDark; text-decoration: none;">專業人體工學滑鼠</a></td>
+                                <td>電腦周邊</td>
+                                <td>$1,850</td>
+                                <td><span class="text-danger fw-bold">12</span></td>
+                                <td><span class="badge rounded-pill text-white" style="background-color: @accentColor;">庫存低</span></td>
+                                <td>
+                                    <a asp-controller="Product" asp-action="Detail" class="btn btn-sm btn-outline-secondary">編輯</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav class="mt-4" aria-label="Page navigation example">
+                    <ul class="pagination pagination-sm justify-content-end pagination-corp">
+                        <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
