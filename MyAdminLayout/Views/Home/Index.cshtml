@@ -1,0 +1,141 @@
+@{
+    var primaryColor = "var(--sidebar-bg)";
+    var accentColor = "var(--brand-red)";
+    var corpTextDark = "var(--corp-text-dark)";
+
+    ViewData["Title"] = "總覽儀表板";
+}
+
+<div class="p-4">
+
+    <header class="mb-5 pb-3 border-bottom border-2">
+        <h3 class="fw-bold" style="color: @corpTextDark;"><i class="bi bi-speedometer2 me-2"></i> 總覽儀表板</h3>
+        <p class="text-muted mb-0">歡迎回來！以下是您的關鍵業務指標和即時活動。</p>
+    </header>
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card p-4 content-card border-start border-4" style="border-left-color: @primaryColor !important;">
+                <div class="d-flex align-items-center">
+                    <div class="me-3 fs-3 text-white rounded-3 p-3" style="background-color: @primaryColor;">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1 fw-bold">總營收 (本月)</p>
+                        <h4 class="fw-bold mb-0" style="color: @corpTextDark;">$123,456.78</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card p-4 content-card border-start border-4" style="border-left-color: @accentColor !important;">
+                <div class="d-flex align-items-center">
+                    <div class="me-3 fs-3 text-white rounded-3 p-3" style="background-color: @accentColor;">
+                        <i class="bi bi-list-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1 fw-bold">待辦訂單</p>
+                        <h4 class="fw-bold mb-0" style="color: @corpTextDark;">42 筆</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card p-4 content-card border-start border-4 border-info">
+                <div class="d-flex align-items-center">
+                    <div class="me-3 fs-3 text-white rounded-3 p-3 bg-info">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1 fw-bold">活躍用戶</p>
+                        <h4 class="fw-bold mb-0" style="color: @corpTextDark;">8,901 人</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card p-4 content-card border-start border-4" style="border-left-color: var(--corp-secondary) !important;">
+                <div class="d-flex align-items-center">
+                    <div class="me-3 fs-3 text-white rounded-3 p-3" style="background-color: var(--corp-secondary);">
+                        <i class="bi bi-ticket-detailed"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted small mb-1 fw-bold">未解決工單</p>
+                        <h4 class="fw-bold mb-0" style="color: @corpTextDark;">12 件</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-7">
+            <div class="card p-4 content-card h-100">
+                <h5 class="fw-bold mb-3" style="color: @corpTextDark;">月度業績成長 (趨勢圖)</h5>
+                <p class="small text-muted mb-4">本年度的銷售表現折線圖。</p>
+
+                <div style="height: 300px; background-color: #f7f7f7; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+                    <p class="text-muted small mb-0">
+                        [圖表 Placeholder]
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card p-4 content-card h-100">
+                <h5 class="fw-bold mb-3" style="color: @corpTextDark;">重要專案進度</h5>
+
+                <p class="mb-1 fw-bold small text-muted">Corporate V12 發佈</p>
+                <div class="progress mb-3" style="height: 8px;">
+                    <div class="progress-bar" role="progressbar" style="width: 85%; background-color: @primaryColor;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p class="mb-1 fw-bold small text-muted">年度預算審核</p>
+                <div class="progress mb-3" style="height: 8px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 98%;" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <p class="mb-1 fw-bold small text-muted">伺服器遷移計畫</p>
+                <div class="progress mb-4" style="height: 8px;">
+                    <div class="progress-bar" role="progressbar" style="width: 40%; background-color: @accentColor;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <hr>
+
+                <h5 class="fw-bold mt-4 mb-3" style="color: @corpTextDark;">最近系統活動</h5>
+                <ul class="list-unstyled small">
+                    <li class="d-flex mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>
+                        <div>張三 完成了「客戶資料匯入」任務。</div>
+                        <span class="ms-auto text-muted">2分鐘前</span>
+                    </li>
+                    <li class="d-flex mb-2">
+                        <i class="bi bi-person-fill-add text-info me-2 mt-1"></i>
+                        <div>李四 新增了一筆新產品資訊。</div>
+                        <span class="ms-auto text-muted">1小時前</span>
+                    </li>
+                    <li class="d-flex mb-2">
+                        <i class="bi bi-shield-fill-exclamation text-warning me-2 mt-1"></i>
+                        <div>系統：密碼變更失敗 3 次。</div>
+                        <span class="ms-auto text-muted">今天 10:00</span>
+                    </li>
+                    <li class="d-flex mb-2">
+                        <i class="bi bi-trash-fill text-danger me-2 mt-1"></i>
+                        <div>王五 刪除了舊的「演示」專案。</div>
+                        <span class="ms-auto text-muted">昨天</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="btn-corp btn-corp-primary btn-sm mt-3 w-100">查看所有活動紀錄</a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
