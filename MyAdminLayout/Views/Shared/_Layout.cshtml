@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Corporate Admin Pro</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <div class="d-flex">
+
+        <div class="sidebar">
+
+            <div class="sidebar-heading">
+                <div class="icon-main">
+                    <div class="brand-icon-box">
+                        <i class="bi bi-fire" style="color: var(--brand-red); font-size: 1rem;"></i>
+                    </div>
+                </div>
+                <a asp-controller="Home" asp-action="Index" style="text-decoration: none;">
+                    <span class="fs-4 fw-bold text-white text-nowrap">Corporate Pro</span>
+                </a>
+            </div>
+
+            @{
+                // 獲取當前的 Controller 和 Action 名稱
+                var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+                // 輔助函式：檢查是否匹配 Controller/Action
+                string GetActiveClass(string controller, string action = "Index")
+                {
+                    bool isControllerMatch = currentController.Equals(controller, StringComparison.OrdinalIgnoreCase);
+                    bool isActionMatch = currentAction.Equals(action, StringComparison.OrdinalIgnoreCase);
+
+                    // 如果只提供 Controller，或 Controller/Action 皆匹配，則返回 "active"
+                    if (isControllerMatch && (action == "Index" || isActionMatch))
+                    {
+                        return "active";
+                    }
+                    return "";
+                }
+
+                // 輔助函式，檢查 Controller 是否匹配，用於展開父選單
+                string GetParentExpandedClass(string controller)
+                {
+                    return currentController.Equals(controller, StringComparison.OrdinalIgnoreCase) ? "show" : "collapse";
+                }
+
+                // 輔助函式，專門用於子選單的連結 (Link 顏色)
+                string GetSublinkActiveClass(string controller, string action)
+                {
+                    bool isControllerMatch = currentController.Equals(controller, StringComparison.OrdinalIgnoreCase);
+                    bool isActionMatch = currentAction.Equals(action, StringComparison.OrdinalIgnoreCase);
+
+                    // 子選單只在 Controller 和 Action 都匹配時才顯示 Active
+                    if (isControllerMatch && isActionMatch)
+                    {
+                        return "active-sublink"; // 使用自定義 class 來強調子選單選中狀態
+                    }
+                    return "";
+                }
+            }
+
+            <ul class="nav nav-pills flex-column mb-auto mt-2">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <div class="icon-main"><i class="bi bi-grid-1x2-fill"></i></div>
+                        <span class="link-text">總覽儀表板</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed @(currentController == "Product" ? "active" : "")"
+                       data-bs-toggle="collapse" href="#menu-product" role="button" aria-expanded="@(currentController == "Product" ? "true" : "false")">
+                        <div class="icon-main"><i class="bi bi-box-seam"></i></div>
+                        <span class="link-text">產品管理</span>
+                        <i class="bi bi-chevron-down dropdown-arrow"></i>
+                    </a>
+
+                    <div class="@GetParentExpandedClass("Product")" id="menu-product">
+                        <ul class="submenu-list">
+                            <li>
+                                <a asp-controller="Product" asp-action="Index"
+                                   class="submenu-link @GetSublinkActiveClass("Product", "Index")">
+                                    庫存清單
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Product" asp-action="Detail"
+                                   class="submenu-link @GetSublinkActiveClass("Product", "Detail")">
+                                    產品詳情編輯
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Data" asp-action="Charts"
+                       class="nav-link @GetActiveClass("Data", "Charts")">
+                        <div class="icon-main"><i class="bi bi-graph-up-arrow"></i></div>
+                        <span class="link-text">數據分析</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="System" asp-action="Settings"
+                       class="nav-link @GetActiveClass("System", "Settings")">
+                        <div class="icon-main"><i class="bi bi-sliders"></i></div>
+                        <span class="link-text">系統設定</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-controller="Component" asp-action="Index" class="nav-link @GetActiveClass("Component", "Index")">
+                        <div class="icon-main"><i class="bi bi-tools"></i></div>
+                        <span class="link-text">元件庫</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed @(currentController == "Account" || (currentController == "Home" && (currentAction == "Error404" || currentAction == "Error500")) ? "active" : "")"
+                       data-bs-toggle="collapse"
+                       href="#menu-utility"
+                       role="button"
+                       aria-expanded="@(currentController == "Account" || (currentController == "Home" && (currentAction == "Error404" || currentAction == "Error500")) ? "true" : "false")">
+                        <div class="icon-main"><i class="bi bi-code-slash"></i></div>
+                        <span class="link-text">介面預覽</span>
+                        <i class="bi bi-chevron-down dropdown-arrow"></i>
+                    </a>
+
+                    <div class="@(currentController == "Account" || (currentController == "Home" && (currentAction == "Error404" || currentAction == "Error500")) ? "show" : "collapse")" id="menu-utility">
+                        <ul class="submenu-list">
+                            <li>
+                                <a asp-controller="Account" asp-action="Login"
+                                   class="submenu-link @GetSublinkActiveClass("Account", "Login")">
+                                    登入畫面
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Error404"
+                                   class="submenu-link @GetSublinkActiveClass("Home", "Error404")">
+                                    404 找不到
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Error500"
+                                   class="submenu-link @GetSublinkActiveClass("Home", "Error500")">
+                                    500 伺服器錯誤
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div class="border-top border-secondary border-opacity-25 mt-auto">
+                <a href="#" class="nav-link">
+                    <div class="icon-main">
+                        @* <img src="https://github.com/mdo.png" alt="" width="28" height="28" class="rounded-circle border border-2 border-white"> *@
+                        <i class="bi bi-person-circle" style="font-size:28px;"></i>
+                    </div>
+                    <span class="link-text">Admin User</span>
+                </a>
+            </div>
+        </div>
+
+        <main role="main" class="w-100">
+            @RenderBody()
+        </main>
+
+    </div>
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
